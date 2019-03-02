@@ -1,5 +1,5 @@
-//Database
-let users = {
+// Database
+const users = {
   1: {
     id: '1',
     username: 'Robin Wieruch',
@@ -10,7 +10,7 @@ let users = {
   },
 };
 
-let messages = {
+const messages = {
   1: {
     id: '1',
     text: 'Hello World',
