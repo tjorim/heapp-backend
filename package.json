@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "mongodb": "^3.1.13",
     "mongoose": "^5.4.16",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {
     "nodemon": "^1.18.10"
   },
-  "devDependencies": {},
   "scripts": {
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
