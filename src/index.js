@@ -1,17 +1,24 @@
-require('dotenv').config()
+require('dotenv').config();
 
 console.log('Hello Node.js project.');
 console.log('Hello ever running Node.js project.');
 
 console.log(process.env.MY_SECRET);
 
+const models = require('./models');
+const routes = require('./routes');
+
 //Database
 const mongoose = require('mongoose');
 var path = require('path');
 
+const bodyParser = require('body-parser')
+
 const express = require('express');
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   return res.send('Received a GET HTTP method');
@@ -35,36 +42,22 @@ app.delete('/', (req, res) => {
   return res.send('Received a DELETE HTTP method');
 });
 
-app.get('/users', (req, res) => {
-  return res.send('GET HTTP method on user resource');
+////
+
+app.use((req, res, next) => {
+  req.context = {
+    models,
+    me: models.users[1],
+  };
+  next();
 });
 
-app.post('/users', (req, res) => {
-  return res.send('POST HTTP method on user resource');
-});
-
-app.put('/users', (req, res) => {
-  return res.send('PUT HTTP method on user resource');
-});
-
-app.delete('/users', (req, res) => {
-  return res.send('DELETE HTTP method on user resource');
-});
-
-app.put('/users/:userId', (req, res) => {
-  return res.send(
-    `PUT HTTP method on user/${req.params.userId} resource`,
-  );
-});
-
-app.delete('/users/:userId', (req, res) => {
-  return res.send(
-    `DELETE HTTP method on user/${req.params.userId} resource`,
-  );
-});
+app.use('/session', routes.session);
+app.use('/users', routes.user);
+app.use('/messages', routes.message);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Express is running on port ${process.env.PORT}`);
+  console.log(`Example app listening on port ${process.env.PORT}.`);
 });
 
 //app.use('/', routes);

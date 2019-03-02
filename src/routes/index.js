@@ -1,20 +1,9 @@
-const express = require('express');
+const session = require('./session');
+const user = require('./user');
+const message = require('./message');
 
-const router = express.Router();
-
-router.get('/', (req, res) => {
-  res.send('It works!');
-});
-
-
-
-
-
-router.post('/', (req, res) => {
-  res.render('form', { title: 'Registration form' });
-});
-
-
-
-
-module.exports = router;
+module.exports = {
+  session,
+  user,
+  message,
+};
