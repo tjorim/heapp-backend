@@ -1,29 +1,16 @@
 // Database
-const users = {
-  1: {
-    id: '1',
-    username: 'Robin Wieruch',
-  },
-  2: {
-    id: '2',
-    username: 'Dave Davids',
-  },
-};
+const mongoose = require('mongoose');
+const User = require('./user');
+const Message = require('./message');
 
-const messages = {
-  1: {
-    id: '1',
-    text: 'Hello World',
-    userId: '1',
-  },
-  2: {
-    id: '2',
-    text: 'By World',
-    userId: '2',
-  },
+const connectDb = () => mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+
+const models = {
+  User,
+  Message,
 };
 
 module.exports = {
-  users,
-  messages,
+  connectDb,
+  models,
 };

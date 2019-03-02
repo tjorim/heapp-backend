@@ -29,7 +29,7 @@ userSchema.pre('remove', function (next) {
 
 const User = mongoose.model('User', userSchema);
 
-export default User;
+module.exports = User;
 
 // mongoose.connect(process.env.DATABASE, { useMongoClient: true });
 // mongoose.Promise = global.Promise;

@@ -2,6 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/', (req, res) => res.send(req.context.models.users[req.context.me.id]));
+router.get('/', async (req, res) => {
+  const user = await req.context.models.User.findById(
+    req.context.me.id,
+  );
+  return res.send(user);
+});
 
 module.exports = router;

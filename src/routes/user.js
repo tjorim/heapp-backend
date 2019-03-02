@@ -2,14 +2,18 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   console.log('GET HTTP method on users resource');
-  return res.send(Object.values(req.context.models.users));
+  const users = await req.context.models.User.find();
+  return res.send(users);
 });
 
-router.get('/:userId', (req, res) => {
+router.get('/:userId', async (req, res) => {
   console.log('GET HTTP method on user');
-  return res.send(req.context.models.users[req.params.userId]);
+  const user = await req.context.models.User.findById(
+    req.params.userId,
+  );
+  return res.send(user);
 });
 
 module.exports = router;
