@@ -14,6 +14,15 @@ router.get('/:userId', (req, res) => {
 module.exports = router;
 
 /*
+app.post('/createUser', (req, res) => {
+  store
+    .createUser({
+      username: req.body.username,
+      password: req.body.password
+    })
+    .then(() => res.sendStatus(200))
+})
+/////
 app.post('/users', (req, res) => {
   return res.send('POST HTTP method on user resource');
 });
