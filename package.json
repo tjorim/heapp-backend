@@ -10,7 +10,7 @@
     "mongodb": "^6.13.0",
     "mongoose": "^8.10.1",
     "mysql": "^2.18.1",
-    "uuid": "^11.0.5"
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "eslint": "^9.20.1",
